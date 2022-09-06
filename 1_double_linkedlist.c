@@ -42,8 +42,8 @@ void add(int index, char word){
         else{
             temp->next = t;
             temp->prev = t->prev;
-            t->prev = temp;
             t->prev->next = temp;
+            t->prev = temp;
         }
         size++;
     }
@@ -66,18 +66,24 @@ void delete(int index){
 }
 
 void get(int index){
-    int i;
-    node *temp = h->next;
-    for(i = 0 ; i < index - 1; i++){
-        temp = temp->next;
+    if(index < 0 || index > size){
+        printf("invalid position\n");
     }
-    printf("%c\n",temp->data);
+    else{
+        int i;
+        node *temp = h->next;
+        for(i = 0 ; i < index - 1; i++){
+            temp = temp->next;
+        }
+        printf("%c\n",temp->data);
+    }
 }
 
 void print_(){
     for(node *temp = h->next ; temp != t; temp = temp->next){
         printf("%c",temp->data);
     }
+    printf("\n");
 }
 
 int main(void){
@@ -85,8 +91,10 @@ int main(void){
     char a, word;
 
     init();
+
     scanf("%d",&n);
     getchar();
+
     for(i = 0 ; i < n ; i++){
         scanf("%c",&a);
         getchar();
