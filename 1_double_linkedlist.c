@@ -120,9 +120,6 @@ int main(void){
         delete(1);
         i--;
     }
-    printf("123\n");
-    print_();
-    printf("456\n");
     free(h);
     free(t);
 
