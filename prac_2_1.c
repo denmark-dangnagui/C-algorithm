@@ -7,21 +7,17 @@
 int *queue;                     // 큐 선언
 int queuesize, front, rear,cnt; // 필요한 변수 선언
 
-void enqueue(int num){          //큐에 넣을 함수 선언
-    if(rear == queuesize){      // rear가 큐사이즈와 같을시엔 예외처리
-        printf("full\n");
-    }   
+void enqueue(int num){          //큐에 넣을 함수 선언 
+    if(cnt == 0){       // 배열의 0번째부터 들어가게 하기 위해 cnt로 조절
+        queue[rear] = num;
+        cnt += 1;       // 다시 이 조건문에 들어가게 하지 않기 위해 cnt 값 1추가
+    }
     else{
-        if(cnt == 0){       // 배열의 0번째부터 들어가게 하기 위해 cnt로 조절
-            queue[rear] = num;
-            cnt += 1;       // 다시 이 조건문에 들어가게 하지 않기 위해 cnt 값 1추가
-        }
-        else{
-            rear = (rear + 1) % queuesize;  // 1부터 rear값을 넣어주면서 queue안에 들어가게 함.
-            queue[rear] = num;
-        }
+        rear = (rear + 1) % queuesize;  // 1부터 rear값을 넣어주면서 queue안에 들어가게 함.
+        queue[rear] = num;
+    }
     } 
-}
+
 
 void print(){
     for(int i = 0 ; i < queuesize; i++){  // queuesize의 크기를 가진 queue를 처음부터 끝까지 출력
