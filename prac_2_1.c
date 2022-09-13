@@ -47,21 +47,18 @@ int main(){
     for(i = queuesize - 1 ; i > 0 ; i--){ // queue의 뒷부분부터 정렬하기
         temp = queue[i];
         cnt = 0;
-        for(j = i - 1; j >= 0 ; j--){   //선택정렬을 하기위해서 temp를 활용해서 바꿔줌.
+        for(j = i - 1; j >= 0 ; j--){   //선택정렬을 하기위해서 temp를 활용해서 최고값을 확인, 한번만 교환하기 위해서 이런 반복문 사용
                 if(temp < queue[j]){
-                    temp = queue[j];
+                    temp = queue[j];  //기준이 되는 값의 앞에서 최고값과 인덱스값을 저장함.
                     idx = j;
-                    cnt++;
+                    cnt++;          // cnt를 통해 기준값보다 앞에 최고값이 있는지 확인
                 }
         }
-        if(cnt != 0){
+        if(cnt != 0){  // 최고값이 있다면 cnt값이 1증가 하므로 두수를 바꿔줌.
             queue[idx] = queue[i];
             queue[i] = temp;
         }
-        // printf("\n");
-        print();
     }
-    print();
-    free(queue);
+    print();        //출력함수 호출
+    free(queue); //메모리 해제
 }
-// 8 31 48 73 3 65 20 29
