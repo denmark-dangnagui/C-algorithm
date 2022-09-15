@@ -50,7 +50,7 @@ int main(){
                     cnt++;          // cnt를 통해 기준값보다 앞에 최고값이 있는지 확인
                 }
         }
-        if(cnt != 0){  // 최고값이 있다면 cnt값이 1증가 하므로 두수를 바꿔줌.
+        if(cnt != 0){  // 최고값이 있다면 cnt값이 1증가 하므로 두수를 바꿔줌. cnt = 0 일 경우 제자리에 있는다.
             queue[idx] = queue[i];
             queue[i] = temp;
         }
