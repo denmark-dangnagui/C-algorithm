@@ -4,25 +4,30 @@
 #include <time.h>
 #pragma warning(disabled:4996)
 int n;
+
 int Heap[100];
+
 void downHeap(int i){
-    int bigger, temp;
-    if(n < i*2 && n < i*2+1){ // 말단 노드인지 즉, 자식노드가 있는지 확인
+    int bigger, tmp;
+    if(n < i*2 && n < i*2+1) // 말단 노드인지 즉, 자식노드가 있는지 확인
         return;
-    }
     bigger = i*2;
     if(i*2+1 <= n){
-        if(Heap[bigger] < Heap[i*2+1]){
+        if(Heap[bigger] < Heap[i*2+1])
             bigger = i*2+1;
-        }
     }
-    if(Heap[i] >= Heap[bigger]){
+    if(Heap[i] >= Heap[bigger]) 
         return;
-    }
-    temp = Heap[i];
+    tmp = Heap[i];
     Heap[i] = Heap[bigger];
-    Heap[bigger] = temp;
+    Heap[bigger] = tmp;
     downHeap(bigger);
+}
+
+void buildHeap(){ // n = 6
+    for(int i = n/2 ; i > 0 ; i--){ // 3,2,1
+        downHeap(i);
+    }
 }
 
 void printHeap(){
@@ -31,12 +36,6 @@ void printHeap(){
         printf(" %d",Heap[i]);
     }
     printf("\n");
-}
-
-void buildHeap(){ // n = 6
-    for(int i = n/2 ; i > 0 ; i--){ // 3,2,1
-        downHeap(i);
-    }
 }
 
 int main(){
