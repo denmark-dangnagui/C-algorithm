@@ -16,20 +16,24 @@ void upHeap(){  // upheap이란, 부모노드가 자식노드보다 클때까지
     Heap[i] = data;
 }
 
-void downHeap(){
-    int i = 1, j, data = Heap[1]; 
-    while(i <= n / 2){
-        j = i * 2;
-        if(j + 1 <= n &&(Heap[j] <= Heap[j+1])){
-            j++;
-        }
-        if(Heap[j] <= data){
-            break;
-        }
-        Heap[i] = Heap[j];
-        i = j;
-    }
-    Heap[i] = data;
+void downHeap(int i) {
+	int bigger, temp;
+	if ((n < (i * 2)) && (n < (i * 2 + 1))) {
+		return;
+	}
+	bigger = i * 2;
+	if (n >= i * 2 + 1) { // 비교할 대상이 있는지 확인부터 하는 것.
+		if (Heap[i * 2 + 1] > Heap[bigger]) {
+			bigger = i * 2 + 1;
+		}
+	}
+	if (Heap[i] >= Heap[bigger]) {
+		return;
+	}
+	temp = Heap[i];
+	Heap[i] = Heap[bigger];
+	Heap[bigger] = temp;
+	downHeap(bigger);
 }
 
 void insertitem(int key){
@@ -42,7 +46,7 @@ int removemax(){
     int key = Heap[1];
     Heap[1] = Heap[n];
     n -= 1;
-    downHeap();
+    downHeap(1);
     return key;
 }
 
