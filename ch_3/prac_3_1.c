@@ -7,15 +7,15 @@ int n;      // 힙의 크기 n선언
 int Heap[100];  // 힙 배열 선언
 
 void upHeap(int i){  
-    int tmp;
-    if(i == 1)
+    int tmp;  // 교환을 위해 변수를 하나 선언하고
+    if(i == 1) // 교환시 1번의 인덱스를 갖는다면 끝내고
         return;
-    if(Heap[i] <= Heap[i/2])
+    if(Heap[i] <= Heap[i/2]) // 자식이 부모보다 작거나 같으면 끝낸다.
         return;
-    tmp = Heap[i];
+    tmp = Heap[i]; // 교환
     Heap[i] = Heap[i/2];
     Heap[i/2] = tmp;
-    upHeap(i/2);
+    upHeap(i/2); // downHeap과 마찬가지로 멈출 때까지 실행하게 재귀한다.
 }
 
 void downHeap(int i){
@@ -29,10 +29,10 @@ void downHeap(int i){
     }
     if(Heap[i] >= Heap[bigger])   // 만일 Heap[i]의 key 값이 Heap[bigger] 보다 크다면 바꾸는 의미 없음
         return; 
-    tmp = Heap[i];      // 교환
+    tmp = Heap[i];      // 교환과정
     Heap[i] = Heap[bigger];
     Heap[bigger] = tmp;
-    downHeap(bigger);
+    downHeap(bigger);  // 재귀로 올라갈 수 있을 때까지 올라감
 }
 
 void insertitem(int key){
