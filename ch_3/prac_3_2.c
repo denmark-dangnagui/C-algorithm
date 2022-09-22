@@ -24,13 +24,13 @@ void downHeap(int i){
 }
 
 void buildHeap(){ // 
-    for(int i = n/2 ; i > 0 ; i--){ // 
+    for(int i = n/2 ; i > 0 ; i--){ // 전역변수 마지막 내부노드부터 역방향으로 루트까지 가게 하기위해서 이렇게 범위를 줌
         downHeap(i); // 각 위치에 맞게 이동할 수 있도록 downHeap 호출
     }
 }
 
 void printHeap(){
-    int i;
+    int i;  // 변수선언
     for(i = 1 ; i < n + 1 ; i++){  // 배열이 1부터 키값을 넣어놨기 때문에[부모와 자식을 비교하기 용이하기 위해] 1부터 n까지 키 값 출력
         printf(" %d",Heap[i]);
     }
