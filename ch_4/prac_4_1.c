@@ -24,6 +24,7 @@ void downHeap(int i){
     downHeap(bigger);  // 재귀로 올라갈 수 있을 때까지 올라감
 }
 
+
 void buildHeap(){ // 
     for(int i = n/2 ; i > 0 ; i--){ // 전역변수 마지막 내부노드부터 역방향으로 루트까지 가게 하기위해서 이렇게 범위를 줌
         downHeap(i); // 각 위치에 맞게 이동할 수 있도록 downHeap 호출
@@ -40,13 +41,11 @@ void printArray(){
 
 void inPlaceHeapSort(){
     int i, temp;
-    size = n;
     for(i = n ; i >= 2 ; i--){
         temp = Heap[1];
         Heap[1] = Heap[i];
         Heap[i] = temp;
         n--;
-
         downHeap(1);
     }
 }
@@ -54,10 +53,12 @@ void inPlaceHeapSort(){
 int main(){
     int i;
     scanf("%d", &n);
+    size = n;
     for(i = 1 ; i <= n ; i++){
         scanf("%d",&Heap[i]);
     }
     buildHeap();
+    printArray();
     inPlaceHeapSort();
     printArray();
     return 0;
